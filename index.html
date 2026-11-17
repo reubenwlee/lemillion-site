@@ -2,34 +2,84 @@
 <html lang="en">
   <!--
     lemillion.llc/ : the company page, served by GitHub Pages from this repo.
-    Static on purpose: no scripts, no fonts or images from anywhere.
+    Static on purpose: no scripts, no fonts or images from anywhere; the
+    system's own faces (SF Pro and SF Mono on Apple devices) do the work.
     The year is typed, not computed: change it each January.
   -->
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Lemillion LLC builds iPhone apps: Micro, which plans and runs your day with you, and Lock In, a focus timer." />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Lemillion LLC makes iPhone apps: Micro, which plans and runs your day with you, and Lock In, a focus timer." />
     <title>Lemillion LLC</title>
     <link rel="stylesheet" href="/site.css" />
   </head>
   <body>
-    <main class="plate">
-      <div class="stripe" aria-hidden="true"></div>
-      <p class="tag">Software</p>
-      <h1>Lemillion LLC</h1>
-      <p class="line">We build iPhone apps: Micro, which plans and runs your day with you, and Lock In, a focus timer.</p>
-      <dl class="spec">
-        <div>
-          <dt>Contact</dt>
-          <dd><a href="mailto:support@lemillion.llc">support@lemillion.llc</a></dd>
-        </div>
-        <div>
-          <dt>Lock In</dt>
-          <dd><a href="/lockin/support/">Support</a> &middot; <a href="/lockin/privacy/">Privacy</a></dd>
-        </div>
-      </dl>
+    <header class="nav">
+      <div class="nav-inner">
+        <a class="wordmark" href="/">Lemillion</a>
+        <nav aria-label="Sections">
+          <a href="#apps">Apps</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Lemillion LLC <span aria-hidden="true">/</span> Software</p>
+        <h1>Apps that keep<br />you on task.</h1>
+        <p class="lede">We make small, precise iPhone apps for planning the day and getting through it.</p>
+      </section>
+
+      <section id="apps" class="apps" aria-label="Apps">
+        <article class="tile">
+          <div class="tile-head">
+            <span class="index">01</span>
+            <span class="platform">iPhone</span>
+          </div>
+          <h2>Micro</h2>
+          <p>Plans and runs your day with you.</p>
+        </article>
+
+        <article class="tile">
+          <div class="tile-head">
+            <span class="index">02</span>
+            <span class="platform">iPhone</span>
+          </div>
+          <h2>Lock In</h2>
+          <p>A focus timer. One task, one countdown, nothing else on screen.</p>
+          <p class="links">
+            <a href="/lockin/support/">Support <span aria-hidden="true">›</span></a>
+            <a href="/lockin/privacy/">Privacy <span aria-hidden="true">›</span></a>
+          </p>
+        </article>
+      </section>
+
+      <section id="contact" class="spec" aria-label="Company details">
+        <dl>
+          <div>
+            <dt>Company</dt>
+            <dd>Lemillion LLC</dd>
+          </div>
+          <div>
+            <dt>Makes</dt>
+            <dd>Apps for iPhone</dd>
+          </div>
+          <div>
+            <dt>Contact</dt>
+            <dd><a href="mailto:support@lemillion.llc">support@lemillion.llc</a></dd>
+          </div>
+        </dl>
+      </section>
     </main>
-    <footer>&copy; 2026 Lemillion LLC</footer>
+
+    <footer>
+      <div class="footer-inner">
+        <span>&copy; 2026 Lemillion LLC</span>
+        <span>All rights reserved.</span>
+      </div>
+    </footer>
   </body>
 </html>

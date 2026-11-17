@@ -1,115 +1,201 @@
-/* lemillion.llc/ : a plain industrial plate, in the system's own faces. */
+/* lemillion.llc/ : black, white and greys only, in the system's own faces. */
 
 :root {
-  --page: #d9d9d4;
-  --plate: #f2f2ee;
-  --ink: #16171a;
-  --muted: #5b5e64;
-  --rule: #a9aaa6;
-  --hazard: #f2b705;
-  --hazard-dark: #16171a; /* stays black in both modes, like real tape */
-  --link: #16171a;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page: #111214;
-    --plate: #1c1d20;
-    --ink: #ececea;
-    --muted: #9a9ca1;
-    --rule: #3a3c40;
-    --link: #ececea;
-  }
+  --bg: #000;
+  --surface: #0f0f10;
+  --surface-hi: #161618;
+  --line: #262628;
+  --text: #f5f5f7;
+  --secondary: #a1a1a6;
+  --tertiary: #6e6e73;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --width: 1080px;
+  --gutter: 22px;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 
-html, body { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
-  min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.47 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Navigation: a thin translucent bar, like Apple's global nav. */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 48px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 32px 16px;
-  background: var(--page);
-  color: var(--ink);
-  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  justify-content: space-between;
 }
 
-.plate {
-  width: 100%;
-  max-width: 560px;
-  background: var(--plate);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  padding: 0 32px 28px;
-}
+.wordmark { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; }
 
-.stripe {
-  height: 10px;
-  margin: 0 -32px 28px;
-  background: repeating-linear-gradient(-45deg, var(--hazard) 0 12px, var(--hazard-dark) 12px 24px);
-}
+.nav nav { display: flex; gap: 26px; }
 
-.tag,
-dt,
-footer {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 12px;
+.nav nav a { font-size: 13px; color: var(--secondary); transition: color 0.2s; }
+
+.nav nav a:hover { color: var(--text); }
+
+main { max-width: var(--width); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Hero */
+.hero { padding: clamp(88px, 16vw, 168px) 0 clamp(64px, 10vw, 112px); }
+
+.eyebrow {
+  margin: 0 0 22px;
+  font: 500 12px/1 var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--tertiary);
 }
 
-.tag { margin: 0 0 6px; }
+.eyebrow span { margin: 0 6px; }
 
 h1 {
   margin: 0;
-  font-size: clamp(32px, 8vw, 44px);
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-size: clamp(48px, 9vw, 104px);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  /* white fading to grey, like brushed metal under a top light */
+  background: linear-gradient(180deg, #ffffff 30%, #8e8e93 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lede {
+  margin: 28px 0 0;
+  max-width: 30ch;
+  font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  color: var(--secondary);
+}
+
+/* App tiles */
+.apps { display: grid; gap: 16px; }
+
+@media (min-width: 760px) {
+  .apps { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+
+.tile {
+  position: relative;
+  min-height: 300px;
+  padding: 30px 32px 32px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--surface-hi), var(--surface));
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* a single machined highlight along the top edge */
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 24px auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+}
+
+.tile-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: auto;
+  padding-bottom: 72px;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--tertiary);
 }
 
-.line {
-  margin: 14px 0 24px;
-  font-size: 17px;
-}
-
-.spec {
+.tile h2 {
   margin: 0;
-  border-top: 1px solid var(--rule);
+  font-size: clamp(36px, 4.4vw, 48px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
-.spec div {
+.tile p { margin: 10px 0 0; max-width: 34ch; color: var(--secondary); }
+
+.tile .links { display: flex; gap: 24px; margin-top: 22px; }
+
+.tile .links a { color: var(--text); font-size: 15px; }
+
+.tile .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Spec sheet */
+.spec { padding: clamp(72px, 10vw, 120px) 0 clamp(64px, 9vw, 104px); }
+
+.spec dl { margin: 0; border-top: 1px solid var(--line); }
+
+.spec dl div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 760px) {
+  .spec dl div { grid-template-columns: 1fr 2fr; }
+}
+
+.spec dt {
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+}
+
+.spec dd { margin: 0; font-size: 17px; overflow-wrap: anywhere; }
+
+.spec dd a { border-bottom: 1px solid var(--tertiary); transition: border-color 0.2s; }
+
+.spec dd a:hover { border-color: var(--text); }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); }
+
+.footer-inner {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 22px var(--gutter) 40px;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
   justify-content: space-between;
-  gap: 4px 16px;
-  padding-top: 14px;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--tertiary);
 }
 
-dd {
-  margin: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 15px;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
-
-a {
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-a:focus-visible {
-  outline: 2px solid var(--hazard);
-  outline-offset: 2px;
-}
-
-footer { text-align: center; }

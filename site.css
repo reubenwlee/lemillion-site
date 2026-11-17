@@ -1,0 +1,115 @@
+/* lemillion.llc/ : a plain industrial plate, in the system's own faces. */
+
+:root {
+  --page: #d9d9d4;
+  --plate: #f2f2ee;
+  --ink: #16171a;
+  --muted: #5b5e64;
+  --rule: #a9aaa6;
+  --hazard: #f2b705;
+  --hazard-dark: #16171a; /* stays black in both modes, like real tape */
+  --link: #16171a;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #111214;
+    --plate: #1c1d20;
+    --ink: #ececea;
+    --muted: #9a9ca1;
+    --rule: #3a3c40;
+    --link: #ececea;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 32px 16px;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.plate {
+  width: 100%;
+  max-width: 560px;
+  background: var(--plate);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0 32px 28px;
+}
+
+.stripe {
+  height: 10px;
+  margin: 0 -32px 28px;
+  background: repeating-linear-gradient(-45deg, var(--hazard) 0 12px, var(--hazard-dark) 12px 24px);
+}
+
+.tag,
+dt,
+footer {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tag { margin: 0 0 6px; }
+
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 8vw, 44px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.line {
+  margin: 14px 0 24px;
+  font-size: 17px;
+}
+
+.spec {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.spec div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding-top: 14px;
+}
+
+dd {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 15px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--hazard);
+  outline-offset: 2px;
+}
+
+footer { text-align: center; }

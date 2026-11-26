@@ -1,0 +1,35 @@
+/* Five Year Journal's pages: the book's paper, ink and gold. */
+:root {
+  --bg: #ece6da;
+  --text: #27302a;
+  --muted: #59624f;
+  --line: #cdbf9f;
+  --accent: #8a6a30;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #291d15;
+    --text: #e9dfcb;
+    --muted: #b8aa90;
+    --line: #5a4733;
+    --accent: #d2b274;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 18px/1.6 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+main { max-width: 680px; margin: 0 auto; padding: 56px 20px 72px; }
+.app { margin: 0 0 8px; color: var(--accent); font-size: 15px; font-style: italic; }
+h1 { margin: 0; font-size: 40px; line-height: 1.15; font-weight: 400; }
+.note { margin: 10px 0 0; color: var(--muted); font-size: 16px; font-style: italic; }
+h2 { margin: 40px 0 8px; font-size: 22px; line-height: 1.3; font-weight: 600; }
+p, ul { margin: 0 0 14px; }
+ul { padding-left: 22px; }
+li { margin-bottom: 8px; }
+a { color: var(--accent); overflow-wrap: anywhere; }
+footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
